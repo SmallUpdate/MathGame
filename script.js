@@ -1,45 +1,54 @@
-let sum = 0, x = 0, ans = 0, points = 0, stage = 1;
-let first = true;
+let sum = 3,
+    points = 0,
+    ans = 0,
+    stage = 1,
+    block = false,
+    header = document.querySelector('header'),
+    test = document.querySelector('.test'),
+    text = document.querySelector('.text'),
+    answer = document.querySelector('.answer'),
+    buttons = document.querySelectorAll('.button'),
+    footer = document.querySelector('footer');
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generate() {
-    document.querySelector('.text').innerHTML = '';
-    first = true;
+    let x = 0,
+        s = '',
+        first = true;
+    
     sum = 0;
-    for (let i = 1; i <= Math.floor(stage / 10 + 2); i++) {
+    for (let i = 1; i <= (Math.floor(stage / 10 + 2) < 5 ? Math.floor(stage / 10 + 2) : 5); i++) {
         if (i != Math.floor(stage / 10 + 2)) {
             if (sum > 0 & sum < 3) {
-                x = getRandomInt(0, 1);
+                x = random(0, 1);
                 if (x = 0) {
-                    x = getRandomInt(-3, -1);
+                    x = random(-3, -1);
                 } else {
-                    x = getRandomInt(1, 3);
+                    x = random(1, 3);
                 }
             } else {
                 if (sum < 1) {
-                    x = getRandomInt(1, 3);
+                    x = random(1, 3);
                 } else if (sum > 2) {
-                    x = getRandomInt(-3, -1);
+                    x = random(-3, -1);
                 }
             }
         } else {
             if (sum == 0) {
-                x = getRandomInt(1, 3);
+                x = random(1, 3);
             } else if (sum < 0) {
-                x = getRandomInt(Math.abs(sum - 1), 3);
+                x = random(Math.abs(sum - 1), 3);
             } else if (sum > 3) {
-                x = getRandomInt(-3, -(sum - 2));
+                x = random(-3, -(sum - 2));
             } else if (sum == 1) {
-                x = getRandomInt(1, 2);
+                x = random(1, 2);
             } else if (sum == 3) {
-                x = getRandomInt(-2, -1);
+                x = random(-2, -1);
             } else {
-                x = getRandomInt(0, 1);
+                x = random(0, 1);
                 if (x == 0) {
                     x = -1;
                 } else if (x == 1) {
@@ -49,31 +58,36 @@ function generate() {
         }
         sum += x;
         if (first) {
-            document.querySelector('.text').innerHTML += x;
+            s += x;
             first = false;
         } else if (x < 0) {
-            document.querySelector('.text').innerHTML += x;
+            s += x;
         } else if (x > 0) {
-            document.querySelector('.text').innerHTML += '+' + x;
+            s += '+' + x;
         }
     }
-    document.querySelector('.text').innerHTML += '=?';
+    test.innerHTML = s + '=';
     console.log(sum);
 }
 
-generate();
+function rightAnswer() {
+    block = true;
+    answer.innerHTML = sum;
+    answer.classList.add('purple');
+    text.classList.add('animation');
+    setTimeout("generate(); answer.classList.remove('purple'); answer.innerHTML = '?'", 1500);
+    setTimeout("text.classList.remove('animation'); block = false", 2000);
+    points += stage;
+    stage += 1;
+    header.innerHTML = 'Score: ' + points;
+    footer.innerHTML = 'Stage: ' + stage;
+}
 
-document.querySelectorAll('.button').forEach((element) => {
-    element.addEventListener('click', function () {
-        if (element.innerHTML == sum) {
-            //alert('Success');
-            generate();
-            points += stage;
-            stage += 1;
-            document.querySelector('header').innerHTML = 'Score: ' + points;
-            document.querySelector('footer').innerHTML = 'Stage: ' + stage;
-        } else {
-            //alert('Wrong');
+for (let i = 0; i < 3; i++) {
+    buttons[i].addEventListener('click', function () {
+        ans = Number(buttons[i].innerHTML);
+        if (ans === sum & !block) {
+            rightAnswer();
         }
     });
-});
+}

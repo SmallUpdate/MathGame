@@ -65,3 +65,29 @@ main {
     padding: 8px 0;
     cursor: pointer;
 }
+
+.purple {
+    color: #3F0044;
+}
+
+.animation {
+    animation: anim 2s ease;
+}
+
+@keyframes anim {
+    50% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
