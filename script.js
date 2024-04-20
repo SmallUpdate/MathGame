@@ -1,4 +1,4 @@
-let sum = 0, x = 0, ans = 0, stage = 1;
+let sum = 0, x = 0, ans = 0, points = 0, stage = 1;
 let first = true;
 
 function getRandomInt(min, max) {
@@ -68,7 +68,10 @@ document.querySelectorAll('.button').forEach((element) => {
         if (element.innerHTML == sum) {
             //alert('Success');
             generate();
+            points += stage;
             stage += 1;
+            document.querySelector('header').innerHTML = 'Score: ' + points;
+            document.querySelector('footer').innerHTML = 'Stage: ' + stage;
         } else {
             //alert('Wrong');
         }
