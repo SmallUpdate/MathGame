@@ -21,7 +21,7 @@ function generate() {
     
     sum = 0;
     for (let i = 1; i <= (Math.floor(stage / 10 + 2) < 5 ? Math.floor(stage / 10 + 2) : 5); i++) {
-        if (i != Math.floor(stage / 10 + 2)) {
+        if (i != (Math.floor(stage / 10 + 2) < 5 ? Math.floor(stage / 10 + 2) : 5)) {
             if (sum > 0 & sum < 3) {
                 x = random(0, 1);
                 if (x = 0) {
