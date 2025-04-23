@@ -1,94 +1,87 @@
 @font-face {
-    font-family: 'Fredoka One';
-    src: url(FredokaOne.ttf);
+    font-family: Rounds;
+    src: url(RoundsBlack.ttf);
 }
 
 html {
-    height: 100%;
-    background-color: #3EB1A3;
-    color: white;
-    font-family: 'Fredoka One';
+    background-color: white;
     user-select: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
     margin: 0;
-}
-
-header, footer {
-    background-color: black;
+    font-size: 32px;
+    font-family: Rounds;
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
-    font-size: 34px;
-    line-height: 100%;
-}
-
-main {
-    padding: 0 30px;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+.score, .stage {
+    text-align: center;
+    padding: 12px 0;
+    width: 100%;
+    background-color: black;
+    color: white
+}
+
+.main {
+    box-sizing: border-box;
+    padding: 16px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
     align-items: center;
-    gap: 40px;
+    flex-direction: column;
+    gap: 28px; /* (64-4)/2 */
 }
 
-.text {
-    font-size: 48px;
+.equation {
+    color: black;
+    font-size: 2em;
     line-height: 100%;
+   /*box-shadow: red 0 0 1px;*/
 }
 
-.buttons {
-    max-width: 340px;
+.hr {
+    width: 100%;
+    background-color: black;
+    height: 8px;
+    border-radius: 4px;
+    transition: all 3s linear;
+}
+
+.answers {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 24px;
+    /*box-shadow: red 0 0 1px;*/
 }
 
 .button {
-    width: 100%;
-    background-color: #3F0044;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 34px;
+    font-size: 1.5em;
     line-height: 100%;
-    padding: 8px 0;
+    background-color: black;
     cursor: pointer;
-    -webkit-tap-highlight-color:  transparent;
+    color: white;
+    padding: 8px;
+    text-align: center;
 }
 
-.purple {
-    color: #3F0044;
-}
-
-.animation {
-    animation: anim 2s ease;
-}
-
-@keyframes anim {
-    50% {
-        opacity: 1;
-    }
-
-    70% {
-        opacity: 0;
-    }
-
-    80% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+.repeat {
+    display: none;
+    cursor: pointer;
+    background-color: rgb(121, 182, 235);
+    color: white;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 12px;
 }
